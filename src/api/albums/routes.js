@@ -1,28 +1,23 @@
-const albumsRoutes = ({
-  postAlbumHandler,
-  getAlbumByIdHandler,
-  putAlbumByIdHandler,
-  deleteAlbumByIdHandler,
-}) => [
+const albumsRoutes = (handler) => [
   {
     method: 'POST',
     path: '/albums',
-    handler: postAlbumHandler,
+    handler: handler.postAlbumHandler,
   },
   {
     method: 'GET',
     path: '/albums/{id}',
-    handler: getAlbumByIdHandler,
+    handler: handler.getAlbumByIdHandler,
   },
   {
     method: 'PUT',
     path: '/albums/{id}',
-    handler: putAlbumByIdHandler,
+    handler: handler.putAlbumByIdHandler,
   },
   {
     method: 'DELETE',
     path: '/albums/{id}',
-    handler: deleteAlbumByIdHandler,
+    handler: handler.deleteAlbumByIdHandler,
   },
 ]
 

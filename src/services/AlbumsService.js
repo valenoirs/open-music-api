@@ -6,13 +6,7 @@ const { albumDBToModel } = require('../utils/mapper')
 
 class AlbumsService {
   constructor() {
-    this._pool = new Pool({
-      user: process.env.PGUSER,
-      host: process.env.PGHOST,
-      database: process.env.PGDATABASE,
-      password: process.env.PGPASSWORD,
-      port: process.env.PGPORT,
-    })
+    this._pool = new Pool()
   }
 
   async createAlbum({ name, year }) {
