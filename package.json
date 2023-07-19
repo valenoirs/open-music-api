@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon ./src/server.js",
     "migrate": "node-pg-migrate",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "test": "newman run openmusic.postman_collection.json --environment openmusic.postman_environment.json"
   },
   "author": "Lucky Wuntu",
   "license": "MIT",

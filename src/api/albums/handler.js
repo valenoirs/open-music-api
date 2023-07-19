@@ -8,14 +8,12 @@ class AlbumsHandler {
     autoBind(this)
   }
 
-  async postAlbumHandler(request, h) {
-    const { payload } = request
+  async postAlbumHandler(req, h) {
+    const { payload } = req
 
     this._validator.validateAlbumPayload(payload)
 
-    const { name, year } = payload
-
-    const albumId = await this._service.createAlbum({ name, year })
+    const albumId = await this._service.createAlbum(payload)
 
     return h
       .response({
@@ -25,23 +23,22 @@ class AlbumsHandler {
       .code(201)
   }
 
-  async getAlbumByIdHandler(request, h) {
-    const { params } = request
-    const { id } = params
+  async getAlbumByIdHandler(req, h) {
+    const { id } = req.params
 
     const album = await this._service.readAlbumById(id)
 
     return h.response({ status: 'success', data: { album } })
   }
 
-  async putAlbumByIdHandler(request, h) {
-    const { payload, params } = request
+  async putAlbumByIdHandler(req, h) {
+    const { payload, params } = req
 
     this._validator.validateAlbumPayload(payload)
-    const { id } = params
-    const { name, year } = payload
 
-    await this._service.updateAlbumById(id, { name, year })
+    const { id } = params
+
+    await this._service.updateAlbumById(id, payload)
 
     return h.response({
       status: 'success',
@@ -49,9 +46,8 @@ class AlbumsHandler {
     })
   }
 
-  async deleteAlbumByIdHandler(request, h) {
-    const { params } = request
-    const { id } = params
+  async deleteAlbumByIdHandler(req, h) {
+    const { id } = req.params
 
     await this._service.deleteAlbumById(id)
 
