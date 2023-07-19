@@ -29,14 +29,15 @@ const init = async () => {
     {
       plugin: albumHandler,
       options: {
-        service: new AlbumsService(),
+        albumsService: new AlbumsService(),
+        songsService: new SongsService(),
         validator: AlbumsValidator,
       },
     },
     {
       plugin: songHandler,
       options: {
-        service: new SongsService(),
+        songsService: new SongsService(),
         validator: SongsValidator,
       },
     },

@@ -76,6 +76,17 @@ class SongsService {
       throw new NotFoundError('Failed to delete song, song not found')
     }
   }
+
+  async readSongsByAlbumId(id) {
+    const query = {
+      text: 'SELECT * FROM songs WHERE album_id = $1',
+      values: [id],
+    }
+
+    const songs = await this._pool.query(query)
+
+    return songs.rows.map(songsDBToModel)
+  }
 }
 
 module.exports = SongsService
